@@ -52,5 +52,27 @@ function Select_Sort(arr) {
     console.log(arr)
   }
 }
-console.log(Select_Sort(arr))
+// console.log(Select_Sort(arr))
 // console.log(Insert_Sort(arr))
+/**
+ * 
+ * 希尔排序(特殊的插入排序)
+ * 时间复杂度O(n^5/4)
+ * 
+ */
+function shell_sort(arr){
+  const n = arr.length
+  for(let inc = n/2 ; parseInt(inc)>0;inc/=2){
+    // 每一趟插入排序
+    for(let i = inc;i<n;i++){
+      let cur = arr[i]
+      let j;
+      for(j = i ;j>=inc&&cur<arr[j-inc];j-=inc){
+        arr[j] = arr[j-inc]
+      }
+      arr[j] = cur
+    }
+    console.log(arr,inc)
+  }
+}
+console.log(shell_sort(arr))
