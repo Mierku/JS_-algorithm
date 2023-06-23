@@ -78,5 +78,60 @@ var lengthOfLongestSubstring = function(s) {
 
   return s.slice(maxpos-max+1,maxpos+1)
    };
-const str = '1233452624'
-console.log(lengthOfLongestSubstring(str))
+
+/**
+ * 滑动窗口 
+ * 判断是否存在重复元素 用map存放
+ * @param {*} str 
+ */
+function findLongStr(str){
+    
+    const len = str.length
+    if(len<=1) return len
+    let l = 0, r = 0
+    let max = 1
+    const map = new Map()
+    // map.set(str[0],0)
+    while(l<len &&r<len){
+        if(map.has(str[r])&&r!=l){
+            map.delete(str[l])
+            l++
+        } else{
+            map.set(str[r],0)        
+            r++
+        }
+        console.log(max,l,r)
+        console.log(str.slice(l,r))
+        max = Math.max(max,r-l)
+
+    }
+    return max
+}
+
+
+function findLongStr(str){
+    
+    const len = str.length
+    if(len<=1) return len
+    let l = 0, r = 0
+    let max = 1
+    const map = new Map()
+    // map.set(str[0],0)
+    while(l<len && r<len){
+        if(map.has(str[r])&&r!=l){
+            l = Math.max(map.get(str[r])+1, l); 
+            // console.log('l: '+l,"r: "+map.get(str[r]),str[r])
+            // console.log('删除位置: '+str[r],r)
+        }
+        map.set(str[r],r)     
+        console.log(max,l,r)
+        console.log(str.slice(l,r+1))
+        max = Math.max(max,r-l+1)
+        r++
+
+    }
+    return max
+}
+// const str = '12334526724'
+const str = 'abcabcbb'
+console.log(findLongStr(str))
