@@ -24,7 +24,6 @@ function parseRoman(str){
         if(l>=r || i+1>=str.length){
             sum+=l
         } else{
-            // console.log(str[i],str[i+1])
             if(isLegal(str[i],str[i+1])){
                 sum+=r-l
                 i++
